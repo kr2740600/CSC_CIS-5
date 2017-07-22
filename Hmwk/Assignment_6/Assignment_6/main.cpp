@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 using namespace std;
 
@@ -55,6 +56,21 @@ void display_array(int array[],int length){
     }
     cout<<"}"<<endl<<endl;
 }
+
+//function for problem 4
+string lookupName(string tName, string names[], string phones[],int num);
+string lookupName(string tName, string names[], string phones[],int num){
+    
+    string phonum;
+    for(int i=0;i<num;++i){
+        if(names[i]==tName){
+            
+            phonum=phones[i];
+        }
+    }
+    return phonum;
+}
+
 int main(int argc, char** argv) {
     //declare variable for loop
     char choice;
@@ -63,6 +79,7 @@ int main(int argc, char** argv) {
         cout<<"Type 1 for problem 1 from Savitch's Array Chapter Practice Program 1"<<endl;
         cout<<"Type 2 for problem 2 from Savitch's Array Chapter Practice Program 2"<<endl;
         cout<<"Type 3 for problem 3 from Savitch's Array Chapter Practice Program 3"<<endl;
+        cout<<"Type 4 for problem 4 from Savitch's Array Chapter Practice Program 4"<<endl;
         
         
         //get user choice
@@ -101,7 +118,7 @@ int main(int argc, char** argv) {
                 }
                 display_array(myAr,leng);
                 break;
-            }
+            }//end of problem 1
             case'2':{
                 //problem 2
                 //declare variables
@@ -127,7 +144,7 @@ int main(int argc, char** argv) {
                 //display array
                 display_array(ar2,leg);
                 break;
-            }
+            }//end of problem 2
             case'3':{
                 //problem 3
                 //declare variables
@@ -148,9 +165,33 @@ int main(int argc, char** argv) {
                 
                 //display new array
                 swapFrontBack(array3,nums);
-            }
-            //end of switch
-        }
+                break;
+            }//end of problem 3
+            case'4':{
+                //problem 4
+                string names[]={"Michael Myers","Ash Williams","Jack Torrance"
+                        ,"Freddy Krueger"};
+                string phoneNumbers[]={"333-8000","333-2323","333-6150","339-7970"};
+                string targetName,targetPhone;
+                char c;
+                do{
+                    cout<<"Enter a name to find the corresponding phone number."<<endl;
+                    cin.ignore();
+                    getline(cin,targetName);
+                    targetPhone=lookupName(targetName,names,phoneNumbers,4);
+                    if(targetPhone.length()>0){
+                        cout<<"The number is: "<<targetPhone<<endl;
+                    }else{
+                        cout<<"Name not found."<<endl;
+                    }
+                    cout<<"Look up another name?(y/n)"<<endl;
+                    cin>>c;
+                    cin.ignore();
+                }while(c=='y');
+                    break;
+            }//end of problem 4
+            
+        }//end of switch statement
         
     }while(choice>=1&&choice<=10);
     
