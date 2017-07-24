@@ -108,6 +108,7 @@ int main(int argc, char** argv) {
     bool bdie;
     char RuSure;
     ofstream save;
+    int start;
      
     //initialize variables
     points=0;
@@ -116,6 +117,11 @@ int main(int argc, char** argv) {
     //explain the rules but only once at the beginning of each game
     explain_rules();
     
+    //ask the user if they wish to start
+    cout<<"Enter '1' to start the program"<<endl;
+    cin>>start;
+    //start the program
+    if(start==1){
     //loop the program as many times as the user wishes
     do{
         //at the start of each round increase the round number
@@ -191,6 +197,6 @@ int main(int argc, char** argv) {
             again='n';
         }
     } while(again=="yes"||again=="Yes");
-
+    }
     return 0;
 }
