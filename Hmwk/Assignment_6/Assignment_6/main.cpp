@@ -128,7 +128,98 @@ float get_sd(float ar[],int size, float avg){
     return sd;
 }
 //problem 7 functions
+//done in the problem itself
 
+//problem 8 functions
+void display_tictac(char array);
+void display_tictac(char array[]){
+    int i;
+    for(i=0;i<9;++i){
+        cout<<array[i]<<" ";
+        if(i==2||i==5||i==8){
+            cout<<endl;
+        }
+    }
+}
+
+char player_x(char ar[11]);
+char player_x(char ar[11]){
+    char x;
+    cout<<"Enter in the number that player x wishes to choose"<<endl;
+    cin>>x;
+    if(x=='1'){
+        if(ar[0]!='o')
+        ar[0]='x';
+    }else if(x=='2'){
+        if(ar[1]!='o')
+        ar[1]='x';
+    }else if(x=='3'){
+        if(ar[2]!='o')
+        ar[2]='x';
+    }else if(x=='4'){
+        if(ar[3]!='o')
+        ar[3]='x';
+    }else if(x=='5'){
+        if(ar[4]!='o')
+        ar[4]='x';
+    }else if(x=='6'){
+        if(ar[5]!='o')
+        ar[5]='x';
+    }else if(x=='7'){
+        if(ar[6]!='o')
+        ar[6]='x';
+    }else if(x=='8'){
+        if(ar[7]!='o')
+        ar[7]='x';
+    }else if(x=='9'){
+        if(ar[8]!='o')
+        ar[8]='x';
+    }
+   // return ar;
+}
+
+char player_o(char ar[]);
+char player_o(char ar[]){
+    char x;
+    cout<<"Enter in the number that player o wishes to choose"<<endl;
+    cin>>x;
+    if(x=='1'){
+        if(ar[0]!='x')
+        ar[0]='o';
+    }else if(x=='2'){
+        if(ar[1]!='x')
+        ar[1]='o';
+    }else if(x=='3'){
+        if(ar[2]!='x')
+        ar[2]='o';
+    }else if(x=='4'){
+        if(ar[3]!='x')
+        ar[3]='o';
+    }else if(x=='5'){
+        if(ar[4]!='x')
+        ar[4]='o';
+    }else if(x=='6'){
+        if(ar[5]!='x')
+        ar[5]='o';
+    }else if(x=='7'){
+        if(ar[6]!='x')
+        ar[6]='o';
+    }else if(x=='8'){
+        if(ar[7]!='x')
+        ar[7]='o';
+    }else if(x=='9'){
+        if(ar[8]!='x')
+        ar[8]='o';
+    }
+    //return ar;
+}
+
+void display_9(char arraya[],char arrayb[],char arrayc[],char arrayd[],char arrayn[]);
+void display_9(char arraya[],char arrayb[],char arrayc[],char arrayd[],char arrayn[]){
+    for(int i=0;i<7;++i){
+        cout<<arrayn[i]<<" "<<arraya[i]<<" "<<arrayb[i]<<" "<<arrayc[i]<<" "<<arrayd[i]<<endl;
+    }
+}
 
 int main(int argc, char** argv) {
     //declare variable for loop
@@ -141,14 +232,14 @@ int main(int argc, char** argv) {
         cout<<"Type 4 for problem 4 from Savitch's Array Chapter Practice Program"<<endl;
         cout<<"Type 5 for problem 3 from Savitch's Array Chapter Programming Project"<<endl;
         cout<<"Type 6 for problem 4 from Savitch's Array Chapter Programming Project"<<endl;
-        cout<<"Type 7 for problem"<<endl;
-        cout<<"Type 8 for problem "<<endl;
-        cout<<"Type 9 for problem "<<endl;
+        cout<<"Type 7 for problem 5 from Savitch's Array Chapter Programming Project"<<endl;
+        cout<<"Type 8 for problem 10 from Savitch's Array Chapter Programming Project"<<endl;
+        cout<<"Type 9 for problem 11 from Savitch's Array Chapter Programming Project"<<endl;
         cout<<"Type 'a' for problem "<<endl<<endl;
         
         //get user choice
         cin>>choice;
-        
+        cout<<endl;
         //use switch for problems
         switch(choice){
             case'1':{
@@ -347,12 +438,176 @@ int main(int argc, char** argv) {
             }//end of problem 7
             case '8':{
                 //problem 8
+                char tac[11]={'1','2','3','4','5','6','7','8','9','x','o'};
+                char giveme;
+                int turns;
                 
+                cout<<"The first player will use 'x' and the second will use 'o'"<<endl;
+                //display board
+                display_tictac(tac);
+                //loop the program
+                do{
+                    char x;
+    cout<<"Enter in the number that player x wishes to choose"<<endl;
+    cin>>x;
+    if(x=='1'){
+        if(tac[0]!='o')
+        tac[0]='x';
+    }else if(x=='2'){
+        if(tac[1]!='o')
+        tac[1]='x';
+    }else if(x=='3'){
+        if(tac[2]!='o')
+        tac[2]='x';
+    }else if(x=='4'){
+        if(tac[3]!='o')
+        tac[3]='x';
+    }else if(x=='5'){
+        if(tac[4]!='o')
+        tac[4]='x';
+    }else if(x=='6'){
+        if(tac[5]!='o')
+        tac[5]='x';
+    }else if(x=='7'){
+        if(tac[6]!='o')
+        tac[6]='x';
+    }else if(x=='8'){
+        if(tac[7]!='o')
+        tac[7]='x';
+    }else if(x=='9'){
+        if(tac[8]!='o')
+        tac[8]='x';
+    }
+                turns++;
+                display_tictac(tac);
+                cout<<"Enter in the number that player o wishes to choose"<<endl;
+    cin>>x;
+    if(x=='1'){
+        if(tac[0]!='x')
+        tac[0]='o';
+    }else if(x=='2'){
+        if(tac[1]!='x')
+        tac[1]='o';
+    }else if(x=='3'){
+        if(tac[2]!='x')
+        tac[2]='o';
+    }else if(x=='4'){
+        if(tac[3]!='x')
+        tac[3]='o';
+    }else if(x=='5'){
+        if(tac[4]!='x')
+        tac[4]='o';
+    }else if(x=='6'){
+        if(tac[5]!='x')
+        tac[5]='o';
+    }else if(x=='7'){
+        if(tac[6]!='x')
+        tac[6]='o';
+    }else if(x=='8'){
+        if(tac[7]!='x')
+        tac[7]='o';
+    }else if(x=='9'){
+        if(tac[8]!='x')
+        tac[8]='o';
+    }
+                display_tictac(tac);
+                turns++;
+                } while(turns<=9);
                 break;
             }//end of problem 8
             case '9':{
                 //problem 9
+                char Aarray[7]={'A','A','A','A','A','A','A'};
+                char Barray[7]={'B','B','B','B','B','B','B'};
+                char Carray[7]={'C','C','C','C','C','C','C'};
+                char Darray[7]={'D','D','D','D','D','D','D'};
+                char Narray[7]={'1','2','3','4','5','6','7'};
+                char row;
+                char letter;
+                char loop;
                 
+                do{
+                //display the seat layout
+                display_9(Aarray,Barray,Carray,Darray,Narray);
+                
+                cout<<"Enter the row in wish you wish to sit"<<endl;
+                cin>>row;
+                cout<<"Enter in the letter seat in which you wish to sit"<<endl;
+                cin>>letter;
+                if(row=='1'){
+                    if(letter=='A'){
+                        Aarray[0]='X';
+                    }else if(letter=='B'){
+                        Barray[0]='X';
+                    }else if(letter=='C'){
+                        Carray[0]='X';
+                    }else if(letter=='D'){
+                        Darray[0]='X';
+                    }
+                }else if(row=='2'){
+                    if(letter=='A'){
+                        Aarray[1]='X';
+                    }else if(letter=='B'){
+                        Barray[1]='X';
+                    }else if(letter=='C'){
+                        Carray[1]='X';
+                    }else if(letter=='D'){
+                        Darray[1]='X';
+                    }
+                } else if(row=='3'){
+                    if(letter=='A'){
+                        Aarray[2]='X';
+                    }else if(letter=='B'){
+                        Barray[2]='X';
+                    }else if(letter=='C'){
+                        Carray[2]='X';
+                    }else if(letter=='D'){
+                        Darray[2]='X';
+                    }
+                }else if(row=='4'){
+                    if(letter=='A'){
+                        Aarray[3]='X';
+                    }else if(letter=='B'){
+                        Barray[3]='X';
+                    }else if(letter=='C'){
+                        Carray[3]='X';
+                    }else if(letter=='D'){
+                        Darray[3]='X';
+                    }
+                }else if(row=='5'){
+                    if(letter=='A'){
+                        Aarray[4]='X';
+                    }else if(letter=='B'){
+                        Barray[4]='X';
+                    }else if(letter=='C'){
+                        Carray[4]='X';
+                    }else if(letter=='D'){
+                        Darray[4]='X';
+                    }
+                }else if(row=='6'){
+                    if(letter=='A'){
+                        Aarray[5]='X';
+                    }else if(letter=='B'){
+                        Barray[5]='X';
+                    }else if(letter=='C'){
+                        Carray[5]='X';
+                    }else if(letter=='D'){
+                        Darray[5]='X';
+                    }
+                }else if(row=='7'){
+                    if(letter=='A'){
+                        Aarray[6]='X';
+                    }else if(letter=='B'){
+                        Barray[6]='X';
+                    }else if(letter=='C'){
+                        Carray[6]='X';
+                    }else if(letter=='D'){
+                        Darray[6]='X';
+                    }
+                }
+                cout<<"Do you want to reserve another seat? (y/n)"<<endl;
+                cin>>loop;
+                }while(loop=='y');
                 break;
             }//end of problem 9
             case 'a':{
