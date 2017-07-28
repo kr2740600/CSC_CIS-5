@@ -61,13 +61,14 @@ void explain_rules(){
 vector<int> roll_the_dice();
 vector<int> roll_the_dice(){
     vector <int> dice;
-    srand(time(NULL));
+    
     for(int i=0;i<9;++i){
         int random=0;
         //srand(time(NULL));
         random=rand()%6+1;
         dice.push_back(random);
     }
+    
     return dice; 
 }
 
@@ -88,8 +89,18 @@ void display_roll(vector<int>die){
     for(int i=0;i<die.size();++i){
         cout<<"Dice: "<<i+1<<" rolled "<<die[i]<<endl;
     }
+    cout<<endl;
 }
 
+//create a display to show what dice the AI rolled
+void display_AI(vector<int>die, int aiNum);
+void display_AI(vector<int>die, int aiNum){
+    cout<<"AI "<<aiNum<<" rolled:"<<endl;
+    for(int i=0;i<9;++i){
+        cout<<"Dice "<<i+1<<" rolled "<<die[i]<<endl;
+    }
+    cout<<endl;
+}
 
 //if the die matches the round number give a point
 int get_points(vector<int>die,int round);
@@ -115,18 +126,25 @@ void display_results(int points,int games, int round){
     }
 }
 
+void aiPoints(int p,int ain);
+void aiPoints(int p,int ain){
+    cout<<"AI #"<<ain<<" has "<<p<<" points"<<endl;
+}
+
 int main(int argc, char** argv) {
     
     //declare variables
-    int numPlay;//number of players
+    char numPlay;//number of players
     int rounds;
     string again;
     vector<int>die;
     vector<int>ai1;
     vector<int>ai2;
     vector<int>ai3;
+    int ai1p;
+    int ai2p;
+    int ai3p;
     int wins;
-    int losses;
     int points;
     int gplayed;
     bool bdie;
@@ -145,20 +163,19 @@ int main(int argc, char** argv) {
     //ask the player how many people they are playing with
     cout<<"Do you want to play this game against AI?"<<endl;
     cout<<"Enter in the number of players to play against(up to 3)"<<endl;
+    numPlay=0;
     cin>>numPlay;
     
-    //make sure that the number entered works
-    while(numPlay<0||numPlay>3){
-        cout<<"Please enter in a valid number of players to play against"<<endl;
-        cin>>numPlay;
-    }
     
     //ask the user if they wish to start
     cout<<"Enter '1' to start the program"<<endl;
     cin>>start;
+    srand(time(NULL));
     //start the program
     if(start==1){
-    //loop the program as many times as the user wishes
+        switch(numPlay){
+            case'0':{
+                //loop the program as many times as the user wishes
     do{
         //at the start of each round increase the round number
         rounds++;
@@ -200,6 +217,178 @@ int main(int argc, char** argv) {
             again="y";
         }
     } while(again=="y"||again=="Y");
+            }//no AI
+            
+            case'1':{
+                           //loop the program as many times as the user wishes
+    do{
+        //at the start of each round increase the round number
+        rounds++;
+        
+        //roll the dice
+        die=roll_the_dice();
+        ai1=roll_the_dice();
+        
+        //let the player know what numbers they rolled
+        display_roll(die);
+        
+        //display the AI numbers
+        display_AI(ai1,1);
+        
+        //check to see if die matches round number
+        points=get_points(die,rounds);
+        ai1p=get_points(ai1,rounds);
+        //at the end of the game add 1 to the number of games played
+        gplayed++;
+        //display the results to the user
+        display_results(points,gplayed,rounds);
+        
+        //display AIs points
+        aiPoints(ai1p,1);
+        //open the save file
+        save.open("Save_Data.txt");
+        //output the data to the save file
+        write_to_file(save,points,gplayed);
+        
+        //ask the user if they would like to re run the program
+        cout<<"Do you wish to play again(y/n)"<<endl;
+        getline(cin,again);
+        cin.ignore();
+        //confirm that the user intended to quit
+        if(again!="y"||again!="Y"){
+            cout<<"Are you sure you want to quit?"<<endl;
+            cout<<"If so type 'Q' or 'q' to quit"<<endl;
+            cin>>RuSure;
+        }
+        //end the program if the user enters required characters
+        if(RuSure=='Q'||RuSure=='q'){
+            again='n';
+        }
+        else{
+            again="y";
+        }
+    } while(again=="y"||again=="Y");
+            }//one AI
+            
+            case'2':{
+                   //loop the program as many times as the user wishes
+    do{
+        //at the start of each round increase the round number
+        rounds++;
+        
+        //roll the dice
+        die=roll_the_dice();
+        ai1=roll_the_dice();
+        ai2=roll_the_dice();
+        
+        //let the player know what numbers they rolled
+        display_roll(die);
+        
+        //display the AI numbers
+        display_AI(ai1,1);
+        display_AI(ai2,2);
+        
+        //check to see if die matches round number
+        points=get_points(die,rounds);
+        ai1p=get_points(ai1,rounds);
+        ai2p=get_points(ai2,rounds);
+        //at the end of the game add 1 to the number of games played
+        gplayed++;
+        //display the results to the user
+        display_results(points,gplayed,rounds);
+        
+        //display AIs points
+        aiPoints(ai1p,1);
+        aiPoints(ai2p,2);
+        //open the save file
+        save.open("Save_Data.txt");
+        //output the data to the save file
+        write_to_file(save,points,gplayed);
+        
+        //ask the user if they would like to re run the program
+        cout<<"Do you wish to play again(y/n)"<<endl;
+        getline(cin,again);
+        cin.ignore();
+        //confirm that the user intended to quit
+        if(again!="y"||again!="Y"){
+            cout<<"Are you sure you want to quit?"<<endl;
+            cout<<"If so type 'Q' or 'q' to quit"<<endl;
+            cin>>RuSure;
+        }
+        //end the program if the user enters required characters
+        if(RuSure=='Q'||RuSure=='q'){
+            again='n';
+        }
+        else{
+            again="y";
+        }
+    } while(again=="y"||again=="Y");
+            }//2 AI
+            
+            case'3':{
+                   //loop the program as many times as the user wishes
+    do{
+        //at the start of each round increase the round number
+        rounds++;
+        
+        //roll the dice
+        die=roll_the_dice();
+        srand(time(NULL));
+        ai1=roll_the_dice();
+        ai2=roll_the_dice();
+        ai3=roll_the_dice();
+        
+        //let the player know what numbers they rolled
+        display_roll(die);
+        
+        //display the AI numbers
+        display_AI(ai1,1);
+        display_AI(ai2,2);
+        display_AI(ai3,3);
+        
+        //check to see if die matches round number
+        points=get_points(die,rounds);
+        ai1p=get_points(ai1,rounds);
+        ai2p=get_points(ai2,rounds);
+        ai3p=get_points(ai3,rounds);
+        
+        //at the end of the game add 1 to the number of games played
+        gplayed++;
+        //display the results to the user
+        display_results(points,gplayed,rounds);
+        
+        //display AIs points
+        aiPoints(ai1p,1);
+        aiPoints(ai2p,2);
+        aiPoints(ai3p,3);
+        
+        //open the save file
+        save.open("Save_Data.txt");
+        //output the data to the save file
+        write_to_file(save,points,gplayed);
+        
+        //ask the user if they would like to re run the program
+        cout<<"Do you wish to play again(y/n)"<<endl;
+        getline(cin,again);
+        cin.ignore();
+        //confirm that the user intended to quit
+        if(again!="y"||again!="Y"){
+            cout<<"Are you sure you want to quit?"<<endl;
+            cout<<"If so type 'Q' or 'q' to quit"<<endl;
+            cin>>RuSure;
+        }
+        //end the program if the user enters required characters
+        if(RuSure=='Q'||RuSure=='q'){
+            again='n';
+        }
+        else{
+            again="y";
+        }
+    } while(again=="y"||again=="Y");
+            }//3 AI
+            
+        }//end of switch statement
+    
     }
     return 0;
 }
