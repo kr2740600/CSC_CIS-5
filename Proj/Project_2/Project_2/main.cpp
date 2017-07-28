@@ -5,46 +5,7 @@
 #include <ctime>
 #include <vector>
 
-
 using namespace std;
-//create object
-/*class Player{
-public:
-    //variables
-    
-    //functions
-    Player(int die[],int score,int rounds,int games);
-    int roll_the_dice();
-    void display();
-    void writeFile();
-    
-private:
-    //
-    int dice[];
-    int points;
-    int gplayed;
-    int roundz;
-    
-      
-};
-
-//class Functions;
-Player::Player(int die[],int score,int rounds,int games):
-dice(die),points(score),roundz(rounds),gplayed(games)
-{};
-
-int Player::roll_the_dice(){
-    //create vector to store dice
-    
-    int random;
-    for(int i=0;i<9;++i){
-        srand(time(NULL));
-        dice[i]=rand()%6+1;
-        //dice[i]=random;
-    }
-    return dice;
-}*/
-
 
 //my function
 //create function to introduce the game and its rules
@@ -64,7 +25,7 @@ vector<int> roll_the_dice(){
     
     for(int i=0;i<9;++i){
         int random=0;
-        //srand(time(NULL));
+        
         random=rand()%6+1;
         dice.push_back(random);
     }
@@ -151,6 +112,7 @@ int main(int argc, char** argv) {
     char RuSure;
     ofstream save;
     int start;
+    bool valid;
      
     //initialize variables
     points=0;
@@ -165,6 +127,14 @@ int main(int argc, char** argv) {
     cout<<"Enter in the number of players to play against(up to 3)"<<endl;
     numPlay=0;
     cin>>numPlay;
+    
+    if(numPlay>3||numPlay<0){
+        numPlay=0;
+        cout<<"Please enter in a valid number(0-3)"<<endl;
+        cin>>numPlay;
+        
+    }
+    
     
     
     //ask the user if they wish to start
